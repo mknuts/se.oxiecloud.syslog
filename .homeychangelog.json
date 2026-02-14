@@ -1,5 +1,11 @@
 {
   "1.0.0": {
     "en": "First version!"
+  },
+  "0.1.1": {
+    "en": "First published version"
+  },
+  "0.1.2": {
+    "en": "Updated swedish readme file"
   }
 }
