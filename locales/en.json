@@ -1,0 +1,13 @@
+{
+  "settings": {
+    "title": "Syslog Settings",
+    "intro": "Send logs from your flows to a central syslog server.",
+    "hostLabel": "Server IP Address",
+    "portLabel": "Port (Default 514)",
+    "save": "Save Settings",
+    "test": "Send Test Message",
+    "saved": "Settings saved!",
+    "testSuccess": "Test message sent!",
+    "testError": "An error occurred"
+  }
+}

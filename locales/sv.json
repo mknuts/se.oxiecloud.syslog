@@ -1,0 +1,13 @@
+{
+  "settings": {
+    "title": "Syslog Inställningar",
+    "intro": "Skicka loggar från dina flöden till en central server.",
+    "hostLabel": "Serverns IP-adress",
+    "portLabel": "Port (Standard 514)",
+    "save": "Spara inställningar",
+    "test": "Skicka testmeddelande",
+    "saved": "Inställningarna har sparats!",
+    "testSuccess": "Testmeddelande skickat!",
+    "testError": "Ett fel uppstod"
+  }
+}

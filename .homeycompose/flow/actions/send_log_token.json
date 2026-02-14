@@ -1,0 +1,52 @@
+{
+  "title": {
+    "en": "Send syslog message",
+    "sv": "Skicka syslog-meddelande"
+  },
+  "titleFormatted": {
+    "en": "Send the [[message]] to the log with serverity [[severity]] for app [[tag]] using hostname [[hostname]].",
+    "sv": "Skicka [[message]] till loggen med nivån [[severity]] för appen [[tag]] och hostnamn [[hostname]]."
+  },
+  "hint": {
+    "en": "Message is mandatory. All other fields has defaults",
+    "sv": "Meddelande måste fyllas i. Alla andra fält har standardvärden"
+  },
+  "args": [
+    {
+      "name": "message",
+      "type": "text",
+      "placeholder": { "en": "Message", "sv": "Meddelande" }
+    },
+    {
+      "name": "severity",
+      "type": "dropdown",
+      "values": [
+        { "id": "3", "label": { "en": "Error", "sv": "Fel" } },
+        { "id": "4", "label": { "en": "Warning", "sv": "Varning" } },
+        { "id": "5", "label": { "en": "Notice", "sv": "Notis" } },
+        { "id": "6", "label": { "en": "Info", "sv": "Info" } },
+        { "id": "7", "label": { "en": "Debug", "sv": "Debug" } }
+      ],
+      "hint": {
+        "en": "Defaults to Info if left empty",
+        "sv": "Blir 'Info' om den lämnas tom"
+      },
+      "placeholder": "Info",
+      "required": false
+    },
+    {
+      "name": "tag",
+      "type": "text",
+      "default": "HomeyFlow",
+      "required": false,
+      "placeholder": "HomeyFlow"
+    },
+    {
+      "name": "hostname",
+      "type": "text",
+      "default": "Homey",
+      "required": false,
+      "placeholder": "Homey"
+    }
+  ]
+}

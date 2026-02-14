@@ -1,0 +1,39 @@
+{
+  "id": "se.oxiecloud.syslog",
+  "version": "0.1.1",
+  "compatibility": ">=10.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Syslog client",
+    "sv": "Syslog klient"
+  },
+  "description": {
+    "en": "Syslog made simple",
+    "sv": "En enkel syslog klient"
+  },
+  "category": [
+    "tools"
+  ],
+  "brandColor": "#0E01FF",
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png"
+  },
+  "author": {
+    "name": "Mats Knuts"
+  },
+  "source": "https://github.com/mknuts/se.oxiecloud.syslog",
+  "bugs": {
+    "url": "https://github.com/mknuts/se.oxiecloud.syslog/issues"
+  },
+  "api": {
+    "testConnection": {
+      "method": "post",
+      "path": "/testConnection"
+    }
+  }
+}
