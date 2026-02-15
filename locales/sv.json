@@ -8,6 +8,7 @@
     "test": "Skicka testmeddelande",
     "saved": "Inställningarna har sparats!",
     "testSuccess": "Testmeddelande skickat!",
-    "testError": "Ett fel uppstod"
+    "testError": "Ett fel uppstod",
+    "protocolLabel": "Protokoll (UDP/TCP)"
   }
 }

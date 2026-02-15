@@ -2,6 +2,7 @@
 
 const Homey = require('homey');
 const dgram = require('dgram');
+const net = require('net');
 
 class SyslogApp extends Homey.App {
 
@@ -20,31 +21,38 @@ class SyslogApp extends Homey.App {
       });
   }
 
+
   // Metod för att skicka till syslog (används av både flow och testknapp)
-  async sendToSyslog(data) {
+  async sendToSyslog({ message, severity, tag, hostname }) {
     const host = this.homey.settings.get('syslogHost');
-    const port = parseInt(this.homey.settings.get('syslogPort')) || 514;
+    const port = parseInt(this.homey.settings.get('syslogPort') || 514);
+    const protocol = this.homey.settings.get('syslogProtocol') || 'udp';
 
     if (!host) {
       throw new Error('IP address not configured');
     }
 
-    return new Promise((resolve, reject) => {
-      const client = dgram.createSocket('udp4');
-      const facility = 1;
-      const severity = parseInt(data.severity) || 6;
-      const pri = (facility * 8) + severity;
-      const timestamp = new Date().toISOString();
-      
-      const rawMessage = `<${pri}>${timestamp} ${data.hostname || 'HomeyPro'} ${data.tag || 'Homey'}: ${data.message}`;
-      const payload = Buffer.from(rawMessage);
 
-      client.send(payload, port, host, (err) => {
-        client.close();
-        if (err) return reject(err);
-        resolve(true);
+    const syslogMsg = `<${severity}>${new Date().toISOString()} ${hostname} ${tag}: ${message}`;
+
+    if (protocol === 'tcp') {
+      return new Promise((resolve, reject) => {
+        const client = net.connect({ host, port }, () => {
+          client.end(syslogMsg + '\n'); // TCP kräver ofta en newline
+          resolve();
+        });
+        client.on('error', reject);
+        client.setTimeout(3000, () => { client.destroy(); reject(new Error('TCP Timeout')); });
       });
-    });
+    } else {
+      // Din befintliga UDP-logik här
+      const client = dgram.createSocket('udp4');
+      const buffer = Buffer.from(syslogMsg);
+      client.send(buffer, 0, buffer.length, port, host, (err) => {
+        client.close();
+        if (err) throw err;
+      });
+    }
   }
 }
 

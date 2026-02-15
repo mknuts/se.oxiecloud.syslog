@@ -7,12 +7,14 @@
     .homey-form-buttons {
       display: flex;
       justify-content: center;
-      gap: 10px; /* Ger ett snyggt avstånd mellan knapparna */
+      gap: 10px;
       margin-top: 20px;
     }
     
-    /* Valfritt: Om du vill att knapparna ska ha samma bredd kan du lägga till: */
-    /* .homey-button-primary, .homey-button-secondary { min-width: 150px; } */
+    /* För att dropdown-menyn ska se likadan ut som textfälten */
+    select.homey-form-input {
+      width: 100%;
+    }
   </style>
 </head>
 <body class="homey-visual-baseline">
@@ -31,6 +33,14 @@
       <label class="homey-label" for="syslogPort" data-i18n="settings.portLabel"></label>
       <input class="homey-form-input" id="syslogPort" type="number" placeholder="514" />
     </div>
+
+    <div class="homey-form-group">
+      <label class="homey-label" for="syslogProtocol" data-i18n="settings.protocolLabel">Protocol</label>
+      <select class="homey-form-input" id="syslogProtocol">
+        <option value="udp">UDP</option>
+        <option value="tcp">TCP</option>
+      </select>
+    </div>
   </fieldset>
 
   <div class="homey-form-buttons">
@@ -42,18 +52,29 @@
     function onHomeyReady(Homey) {
       const hostInput = document.getElementById('syslogHost');
       const portInput = document.getElementById('syslogPort');
+      const protocolInput = document.getElementById('syslogProtocol');
       const saveBtn = document.getElementById('save');
       const testBtn = document.getElementById('test');
 
+      // Hämta sparade värden
       Homey.get('syslogHost', (err, value) => { if (value) hostInput.value = value; });
       Homey.get('syslogPort', (err, value) => { if (value) portInput.value = value; });
+      Homey.get('syslogProtocol', (err, value) => { if (value) protocolInput.value = value; });
 
+      // Vid spara
       saveBtn.addEventListener('click', () => {
-        Homey.set('syslogHost', hostInput.value);
-        Homey.set('syslogPort', portInput.value);
+        const host = hostInput.value;
+        const port = portInput.value;
+        const protocol = protocolInput.value;
+
+        Homey.set('syslogHost', host);
+        Homey.set('syslogPort', port);
+        Homey.set('syslogProtocol', protocol);
+        
         Homey.alert(Homey.__('settings.saved')); 
       });
 
+      // Vid test
       testBtn.addEventListener('click', () => {
         Homey.api('POST', '/testConnection', {})
           .then(() => {

@@ -8,6 +8,7 @@
     "test": "Send Test Message",
     "saved": "Settings saved!",
     "testSuccess": "Test message sent!",
-    "testError": "An error occurred"
+    "testError": "An error occurred",
+    "protocolLabel": "Protocol (UDP/TCP)"
   }
 }
