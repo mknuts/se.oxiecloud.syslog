@@ -1,6 +1,6 @@
 {
   "id": "se.oxiecloud.syslog",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "compatibility": ">=10.0.0",
   "sdk": 3,
   "platforms": [
