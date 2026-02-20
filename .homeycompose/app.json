@@ -35,5 +35,6 @@
       "method": "post",
       "path": "/testConnection"
     }
-  }
+  },
+  "support": "https://github.com/mknuts/se.oxiecloud.syslog/issues"
 }
