@@ -2,11 +2,11 @@
 
 module.exports = {
   /**
-   * testConnection anropas från inställningssidan.
-   * Vi använder 'homey.app' för att nå metoderna i din SyslogApp-klass (app.js).
+   * testConnection is called from the settings page.
+   * We use 'homey.app' to access the methods in your SyslogApp class (app.js).
    */
   async testConnection({ homey, body }) {
-    // Vi skickar ett testmeddelande för att verifiera anslutningen
+    // We send a test message to verify the connection
     try {
       await homey.app.sendToSyslog({
         message: 'Test message from Homey settings page',
@@ -15,10 +15,10 @@ module.exports = {
         hostname: 'Homey'
       });
       
-      // Vi returnerar något till HTML-sidan så den vet att det gick bra
+      // We return something to the HTML page so it knows everything went well
       return { status: 'ok' };
     } catch (error) {
-      // Om något går fel (t.ex. ingen IP konfigurerad) kastar vi felet vidare
+      // If something goes wrong (e.g. no IP configured), we pass the error along
       throw new Error(error.message || 'Failed to send test message');
     }
   },

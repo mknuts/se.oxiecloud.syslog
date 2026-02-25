@@ -22,7 +22,7 @@ class SyslogApp extends Homey.App {
   }
 
 
-  // Metod för att skicka till syslog (används av både flow och testknapp)
+  // Method to send to syslog (used by both flows and the test button)
   async sendToSyslog({ message, severity, tag, hostname }) {
     const host = this.homey.settings.get('syslogHost');
     const port = parseInt(this.homey.settings.get('syslogPort') || 514);
@@ -45,7 +45,6 @@ class SyslogApp extends Homey.App {
         client.setTimeout(3000, () => { client.destroy(); reject(new Error('TCP Timeout')); });
       });
     } else {
-      // Din befintliga UDP-logik här
       const client = dgram.createSocket('udp4');
       const buffer = Buffer.from(syslogMsg);
       client.send(buffer, 0, buffer.length, port, host, (err) => {

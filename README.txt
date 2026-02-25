@@ -1,6 +1,4 @@
-Syslog made simple
-
-Do you want a very simple syslog vlient for Homey?
+Do you want a very simple syslog client for Homey?
 Then this is the app for you, just one single flowcard that can send syslog messages to a syslog server of your choice.
 Supports both udp (low on resources) and tcp (more reliable transfers).
 To save resources everything is sent directly to your syslog server and nothing is stored on your Homey.

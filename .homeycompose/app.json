@@ -11,8 +11,8 @@
     "sv": "Syslog klient"
   },
   "description": {
-    "en": "Syslog made simple",
-    "sv": "En enkel syslog klient"
+    "en": "Logging made simple",
+    "sv": "Loggning på ett enkelt sätt"
   },
   "category": [
     "tools"
