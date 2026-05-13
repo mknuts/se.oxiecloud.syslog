@@ -16,5 +16,8 @@
   },
   "1.0.1": {
     "en": "Updated texts for app store"
+  },
+  "1.1.0": {
+    "en": "Time stamp now confirms to RFC 5424 format."
   }
 }
