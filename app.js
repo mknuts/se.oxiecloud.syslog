@@ -32,8 +32,25 @@ class SyslogApp extends Homey.App {
       throw new Error('IP address not configured');
     }
 
+//Create an RFC5424 formatted time stamp
+    const now = new Date();
+    const tzOffset = -now.getTimezoneOffset();
+    const sign = tzOffset >= 0 ? '+' : '-';
+    const pad = (n) => String(n).padStart(2, '0');
+    const localISO = now.getFullYear()
+      + '-' + pad(now.getMonth() + 1)
+      + '-' + pad(now.getDate())
+      + 'T' + pad(now.getHours())
+      + ':' + pad(now.getMinutes())
+      + ':' + pad(now.getSeconds())
+      + '.' + String(now.getMilliseconds()).padStart(3, '0')
+      + sign + pad(Math.floor(Math.abs(tzOffset) / 60))
+      + ':' + pad(Math.abs(tzOffset) % 60);
 
-    const syslogMsg = `<${severity}>${new Date().toISOString()} ${hostname} ${tag}: ${message}`;
+
+
+
+    const syslogMsg = `<${severity}> ${localISO} ${hostname} ${tag}: ${message}`;
 
     if (protocol === 'tcp') {
       return new Promise((resolve, reject) => {
